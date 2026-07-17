@@ -1,6 +1,6 @@
-const URL="https://TU-PROYECTO.supabase.co";
+const URL="https://syoxpjclsvbjyiskuxqr.supabase.co";
 
-const KEY="TU_ANON_KEY";
+const KEY="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InN5b3hwamNsc3Zianlpc2t1eHFyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODQxNzI2NjAsImV4cCI6MjA5OTc0ODY2MH0.u1jGVx4t40ivJU03q-ivHiSApw0wlm3jbTangW0MexU";
 
 const supabase = window.supabase.createClient(URL,KEY);
 
