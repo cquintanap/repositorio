@@ -1,20 +1,22 @@
-const URL = "https://syoxpjclsvbjyiskuxqr.supabase.co";
-const KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InN5b3hwamNsc3Zianlpc2t1eHFyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODQxNzI2NjAsImV4cCI6MjA5OTc0ODY2MH0.u1jGVx4t40ivJU03q-ivHiSApw0wlm3jbTangW0MexU";
+const SUPABASE_URL = "https://syoxpjclsvbjyiskuxqr.supabase.co";
+const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InN5b3hwamNsc3Zianlpc2t1eHFyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODQxNzI2NjAsImV4cCI6MjA5OTc0ODY2MH0.u1jGVx4t40ivJU03q-ivHiSApw0wlm3jbTangW0MexU";
 
-// 1. Cambiamos el nombre aquí para evitar el conflicto
-const supabaseClient = window.supabase.createClient(URL, KEY);
+// Inicializamos la conexión con un nombre único y limpio
+const client = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
 const formulario = document.getElementById("frmUsuario");
 
 formulario.addEventListener("submit", async (e) => {
     e.preventDefault();
 
-    // 2. Usamos el nuevo nombre para insertar los datos
-    const { error } = await supabaseClient
+    // Ponemos un mensaje de carga visual
+    document.getElementById("mensaje").innerHTML = "⏳ Guardando usuario...";
+
+    const { error } = await client
         .from("Usuario")
         .insert({
             username: document.getElementById("username").value,
-            contraseña: document.getElementById("contrasena").value, // Asegúrate de que en Supabase la columna se llame con "ñ"
+            contrasena: document.getElementById("contrasena").value, 
             nombres: document.getElementById("nombres").value,
             apellidos: document.getElementById("apellidos").value,
             dni: document.getElementById("dni").value,
@@ -22,12 +24,13 @@ formulario.addEventListener("submit", async (e) => {
             email: document.getElementById("email").value,
             direccion: document.getElementById("direccion").value,
             cargo: document.getElementById("cargo").value,
-            fecha_ing: document.getElementById("fecha_ing").value,
-            fecha_nac: document.getElementById("fecha_nac").value
+            fecha_ing: document.getElementById("fecha_ing").value || null, // Si está vacío, envía null
+            fecha_nac: document.getElementById("fecha_nac").value || null  // Si está vacío, envía null
         });
 
     if (error) {
-        document.getElementById("mensaje").innerHTML = "❌ " + error.message;
+        console.error("Detalle del error:", error); // Esto te ayudará a ver el error real en la consola
+        document.getElementById("mensaje").innerHTML = "❌ Error: " + error.message;
     } else {
         document.getElementById("mensaje").innerHTML = "✅ Usuario registrado correctamente";
         formulario.reset();
