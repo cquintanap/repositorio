@@ -2,7 +2,7 @@ const URL="https://syoxpjclsvbjyiskuxqr.supabase.co";
 
 const KEY="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InN5b3hwamNsc3Zianlpc2t1eHFyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODQxNzI2NjAsImV4cCI6MjA5OTc0ODY2MH0.u1jGVx4t40ivJU03q-ivHiSApw0wlm3jbTangW0MexU";
 
-const supabase = window.supabase.createClient(URL,KEY);
+const db = window.supabase.createClient(URL,KEY);
 
 const formulario=document.getElementById("frmUsuario");
 
@@ -10,7 +10,7 @@ formulario.addEventListener("submit",async(e)=>{
 
 e.preventDefault();
 
-const {error}=await supabase
+const {error}=await db
 
 .from("Usuario")
 
