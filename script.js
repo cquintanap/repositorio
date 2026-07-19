@@ -1,7 +1,8 @@
-const SUPABASE_URL = "https://syoxpjclsvbjyiskuxqr.supabase.co";
-const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InN5b3hwamNsc3Zianlpc2t1eHFyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODQxNzI2NjAsImV4cCI6MjA5OTc0ODY2MH0.u1jGVx4t40ivJU03q-ivHiSApw0wlm3jbTangW0MexU";
+// Usamos el constructor String y eliminamos cualquier espacio al inicio o final
+const SUPABASE_URL = String("https://syoxpjclsvbjyiskuxqr.supabase.co").trim();
+const SUPABASE_KEY = String("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InN5b3hwamNsc3Zianlpc2t1eHFyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODQxNzI2NjAsImV4cCI6MjA5OTc0ODY2MH0.u1jGVx4t40ivJU03q-ivHiSApw0wlm3jbTangW0MexU").trim();
 
-// Inicializamos la conexión con un nombre único y limpio
+// Inicializamos usando las variables limpias
 const client = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
 const formulario = document.getElementById("frmUsuario");
